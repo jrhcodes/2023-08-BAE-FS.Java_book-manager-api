@@ -34,6 +34,7 @@ public class BookManagerController {
         Book foundBook = bookManagerService.getBookById(book.getId());
 
         if (foundBook == null) {
+            // book.setId((Long) null);
             Book newBook = bookManagerService.insertBook(book);
             return new ResponseEntity<>(newBook, HttpStatus.CREATED);
         } else {

@@ -155,8 +155,6 @@ public class BookManagerControllerTests {
         verify(mockBookManagerServiceImpl, times(0)).updateBookById(book.getId(), book);
     }
 
-
-
     @Test
     public void testDeleteBookById() throws Exception {
         // Arrange

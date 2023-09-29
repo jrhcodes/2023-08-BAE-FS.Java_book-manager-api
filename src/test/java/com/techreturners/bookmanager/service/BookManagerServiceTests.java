@@ -82,7 +82,7 @@ public class BookManagerServiceTests {
     }
 
     @Test
-    public void Added () {
+    public void testDeleteBook() {
         final Long bookId = 5L;
         when(mockBookManagerRepository.findById(bookId)).thenReturn(null);
         bookManagerServiceImpl.deleteBookById(bookId);

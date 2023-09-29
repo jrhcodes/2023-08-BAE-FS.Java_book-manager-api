@@ -131,12 +131,12 @@ public class BookManagerControllerTests {
         when(mockBookManagerServiceImpl.getBookById(book.getId())).thenReturn(book);
 
         this.mockMvcController.perform(
-                        MockMvcRequestBuilders.put("/api/v1/book/" + book.getId())
+                        MockMvcRequestBuilders.put("/api/v1/book")
                                 .contentType(MediaType.APPLICATION_JSON)
                                 .content(mapper.writeValueAsString(book)))
                 .andExpect(MockMvcResultMatchers.status().isOk());
 
-        verify(mockBookManagerServiceImpl, times(1)).updateBookById(book.getId(), book);
+        verify(mockBookManagerServiceImpl, times(1)).updateBook(book);
     }
 
     @Test
@@ -147,12 +147,12 @@ public class BookManagerControllerTests {
         when(mockBookManagerServiceImpl.getBookById(book.getId())).thenReturn(null);
 
         this.mockMvcController.perform(
-                        MockMvcRequestBuilders.put("/api/v1/book/" + book.getId())
+                        MockMvcRequestBuilders.put("/api/v1/book")
                                 .contentType(MediaType.APPLICATION_JSON)
                                 .content(mapper.writeValueAsString(book)))
                 .andExpect(MockMvcResultMatchers.status().isNotFound());
 
-        verify(mockBookManagerServiceImpl, times(0)).updateBookById(book.getId(), book);
+        verify(mockBookManagerServiceImpl, times(0)).updateBook(book);
     }
 
     @Test

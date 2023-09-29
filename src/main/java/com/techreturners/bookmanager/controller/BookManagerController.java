@@ -42,14 +42,14 @@ public class BookManagerController {
         }
     }
 
-    @PutMapping({"/{bookId}"})
-    public ResponseEntity<Book> updateBookById(@PathVariable("bookId") Long bookId, @RequestBody Book book) {
+    @PutMapping
+    public ResponseEntity<Book> updateBook(@RequestBody Book book) {
 
         if (bookManagerService.getBookById(book.getId()) == null) {
             return new ResponseEntity<>(book, HttpStatus.NOT_FOUND);
         } else {
-            bookManagerService.updateBookById(bookId, book);
-            return new ResponseEntity<>(bookManagerService.getBookById(bookId), HttpStatus.OK);
+            bookManagerService.updateBook(book);
+            return new ResponseEntity<>(bookManagerService.getBookById(book.getId()), HttpStatus.OK);
         }
     }
 

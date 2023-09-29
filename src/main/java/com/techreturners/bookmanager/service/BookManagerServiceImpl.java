@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class BookManagerServiceImpl implements BookManagerService {
@@ -33,15 +34,12 @@ public class BookManagerServiceImpl implements BookManagerService {
 
     //User Story 4 - Update Book By Id Solution
     @Override
-    public void updateBookById(Long id, Book book) {
-        Book retrievedBook = bookManagerRepository.findById(id).orElse(null);
+    public void updateBook(Book book) {
+        Optional<Book> retrievedBook = bookManagerRepository.findById(book.getId());
 
-        retrievedBook.setTitle(book.getTitle());
-        retrievedBook.setDescription(book.getDescription());
-        retrievedBook.setAuthor(book.getAuthor());
-        retrievedBook.setGenre(book.getGenre());
-
-        bookManagerRepository.save(retrievedBook);
+        if( retrievedBook.isPresent()) {
+            bookManagerRepository.save(book);
+        }
     }
 
     @Override

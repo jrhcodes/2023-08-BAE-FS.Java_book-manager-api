@@ -76,7 +76,7 @@ public class BookManagerServiceTests {
         when(mockBookManagerRepository.findById(bookId)).thenReturn(Optional.of(book));
         when(mockBookManagerRepository.save(book)).thenReturn(book);
 
-        bookManagerServiceImpl.updateBookById(bookId, book);
+        bookManagerServiceImpl.updateBook(book);
 
         verify(mockBookManagerRepository, times(1)).save(book);
     }
